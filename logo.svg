@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="500" viewBox="0 0 1600 500">
+<rect width="1600" height="500" fill="#000000"/>
+<g transform="translate(85 45) scale(.56)" fill="#FFFFFF">
+  <path d="M180 340 C180 240 264 168 374 168 C484 168 568 240 568 340 C568 440 484 512 374 512 C340 512 308 505 280 492 L200 532 L218 458 C194 426 180 386 180 340 Z"/>
+  <path d="M322 384 C322 246 436 146 582 146 C728 146 842 246 842 384 C842 522 728 622 582 622 C538 622 496 613 460 596 L354 648 L378 550 C342 506 322 450 322 384 Z"/>
+</g>
+<g fill="#000000" transform="translate(85 45) scale(.56)">
+  <circle cx="496" cy="378" r="29"/>
+  <circle cx="582" cy="378" r="29"/>
+  <circle cx="668" cy="378" r="29"/>
+</g>
+<text x="570" y="315" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="190" font-weight="700" letter-spacing="-8">Groupchat</text>
+</svg>
