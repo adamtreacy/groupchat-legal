@@ -12,16 +12,22 @@
     min-height:100vh; display:flex; flex-direction:column;
   }
   main {
-    flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center;
-    text-align:center; padding:40px 20px;
+    flex:1; display:flex; align-items:center; justify-content:center;
+    padding:40px 20px;
   }
+  .hero { display:flex; align-items:center; justify-content:center; text-align:center; }
   .logo { width:100%; max-width:340px; height:auto; margin-bottom:28px; }
   h1 { font-size:22px; font-weight:600; max-width:480px; line-height:1.5; margin:0 0 8px; color:#fff; }
-  p.sub { color:#999; font-size:15px; max-width:420px; line-height:1.5; margin:0 0 32px; }
+  p.sub { color:#999; font-size:15px; max-width:420px; line-height:1.5; margin:0 0 28px; }
   .badge {
     display:inline-block; border:1px solid #333; border-radius:10px;
     padding:12px 22px; color:#aaa; font-size:14px; letter-spacing:.02em;
   }
+  .toggle {
+    display:block; margin-top:16px; color:#555; font-size:13px;
+    text-decoration:none; background:none; border:none; cursor:pointer; font-family:inherit;
+  }
+  .toggle:hover { color:#999; }
   footer {
     text-align:center; padding:24px 20px; color:#666; font-size:13px;
   }
@@ -31,19 +37,59 @@
     text-align:center; padding:14px 20px; color:#666; font-size:12px;
     border-top:1px solid #1a1a1a; line-height:1.8;
   }
+
+  body.mobile .hero { flex-direction:column; }
+
+  body.desktop main { padding:60px 40px; }
+  body.desktop .hero { flex-direction:row; text-align:left; gap:56px; max-width:900px; }
+  body.desktop .logo { max-width:280px; margin-bottom:0; flex-shrink:0; }
+  body.desktop h1 { font-size:30px; max-width:520px; }
+  body.desktop p.sub { max-width:480px; margin:0 0 24px; }
+  body.desktop .toggle { text-align:left; }
 </style>
 </head>
-<body>
+<body class="mobile">
 <main>
-  <img class="logo" src="./logo.svg" alt="Groupchat" />
-  <h1>Public group chats. Anyone can follow. Only members post.</h1>
-  <p class="sub">Groupchat is a place for open conversations, follow any chat to watch it live, react, and see what's being said. Verified members do the posting.</p>
-  <span class="badge">Coming soon on the App Store</span>
+  <div class="hero">
+    <img class="logo" src="./logo.svg" alt="Groupchat" />
+    <div>
+      <h1>Public group chats. Anyone can follow. Only members post.</h1>
+      <p class="sub">Groupchat is a place for open conversations, follow any chat to watch it live, react, and see what's being said. Verified members do the posting.</p>
+      <span class="badge">Coming soon on the App Store</span>
+      <button class="toggle" id="siteToggle" type="button">Switch to desktop site</button>
+    </div>
+  </div>
 </main>
 <footer>
   <a href="./privacy.html">Privacy Policy</a>
   <a href="./terms.html">Terms of Service</a>
 </footer>
 <div class="copyright">an Adam Treacy production<br />&copy; 2024 GA Productions Pty Ltd &middot; ABN 72 682 945 142</div>
+<script>
+  (function () {
+    var STORAGE_KEY = 'gc_site_mode';
+    var body = document.body;
+    var toggle = document.getElementById('siteToggle');
+
+    function defaultMode() {
+      return window.matchMedia('(min-width: 768px)').matches ? 'desktop' : 'mobile';
+    }
+
+    function applyMode(mode) {
+      body.classList.remove('mobile', 'desktop');
+      body.classList.add(mode);
+      toggle.textContent = mode === 'desktop' ? 'Switch to mobile site' : 'Switch to desktop site';
+      localStorage.setItem(STORAGE_KEY, mode);
+    }
+
+    var mode = localStorage.getItem(STORAGE_KEY) || defaultMode();
+    applyMode(mode);
+
+    toggle.addEventListener('click', function () {
+      mode = mode === 'desktop' ? 'mobile' : 'desktop';
+      applyMode(mode);
+    });
+  })();
+</script>
 </body>
 </html>
